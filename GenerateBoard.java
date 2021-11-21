@@ -2,11 +2,31 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class GenerateBoard {
+	//pixel-fix (width then height)
+	int[] pixelFix = new int[] {1, 1};
+	
+	//width and height of each square
 	int w = 0, h = 0;
 	
 	//light and dark green colors on board respectively
 	int[] c1 = new int[] {170, 215, 81};
 	int[] c2 = new int[] {162, 209, 73};
+	
+	//title card color
+	int[] t1 = new int[] {84, 111, 68};
+	int[] t2 = new int[] {76, 111, 71};
+	
+	//board colors when clicked
+	int[] b1 = new int[]{228, 194, 159};
+	int[] b2 = new int[]{215, 184, 153};
+	
+	//numbers from 1-6
+	int[] blue = new int[]{35, 122, 207};
+	int[] green = new int[]{87, 149, 76};
+	int[] red = new int[]{211, 52, 51};
+	int[] purple = new int[]{166, 103, 157};
+	int[] orange = new int[]{235, 153, 53};
+	int[] teal = new int[]{96, 171, 167};
 	
 	//find where the board is located on the screen
 	public int[][][] findBoardCoords(int a, int b) throws AWTException {
@@ -15,12 +35,122 @@ public class GenerateBoard {
 		int width = rs.screenSize.width;
 		int height = rs.screenSize.height;
 		BufferedImage capture = rs.capture();
+				
+		int counter = height * width - 1;
+		int[] colors;
+		boolean flag;
 		
 		int w = 0, h = -1;
 		
-		int counter = 0;
-		int[] colors;
-		boolean flag;
+		/*
+		do {
+			flag = false;
+			colors = rs.getColors(counter / width, counter % width, capture);
+			for (int i = 0; i < 3; i++) {
+				if (c1[i] != colors[i]) {
+					flag = true;
+					break;
+				}
+			}
+			counter--;
+		} while(flag && counter > 0);
+		
+		flag = true;
+		
+		while(flag && counter > 0) {
+			counter--;
+			w++;
+			flag = false;
+			colors = rs.getColors(counter / width, counter % width, capture);
+			for (int i = 0; i < 3; i++) {
+				if (c2[i] != colors[i]) {
+					flag = true;
+					break;
+				}
+			}
+		}
+		
+		this.w = w;
+		
+		flag = true;
+		
+		while (flag && counter > 0) {
+			counter -= width;
+			h++;
+			flag = false;
+			colors = rs.getColors(counter / width, counter % width, capture);
+			for (int i = 0; i < 3; i++) {
+				if (c1[i] != colors[i]) {
+					flag = true;
+					break;
+				}
+			}
+		}
+	
+		this.h = h;
+		
+		System.out.println(h + " " + w);
+		
+		if (counter < 0) {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+		
+		*/
+		
+		/*
+		
+		counter = 0;
+		do {
+			flag = false;
+			colors = rs.getColors(counter % height, counter / height, capture);
+			for (int i = 0; i < 3; i++) {
+				if (t1[i] - 10 > colors[i] || t1[i] + 10 < colors[i]) {
+					flag = true;
+				}
+			}
+			counter++;
+		} while(flag && width > counter / height);
+		int border1 = counter / height;
+		
+		counter = 0;
+		do {
+			flag = false;
+			colors = rs.getColors(counter % height, width - counter / height - 1, capture);
+			for (int i = 0; i < 3; i++) {
+				if (t1[i] - 10 > colors[i] || t1[i] + 10 < colors[i]) {
+					flag = true;
+				}
+			}
+			counter++;
+		} while(flag && width > counter / height);
+		int border2 = width - counter / height - 1;
+		
+		System.out.println(border1 + " " + border2);
+		
+		w = (border2 - border1 + 1) / b;
+		h = w;
+		
+		System.out.println(h + " " + w);
+		
+		*/
+		
+		counter = 0;
+		do {
+			flag = false;
+			colors = rs.getColors(height - counter / width - 1, width - counter % width - 1, capture);
+			for (int i = 0; i < 3; i++) {
+				if (c1[i] != colors[i]) {
+					flag = true;
+				}
+			}
+			counter++;
+		} while(flag && height > counter / width);
+		
+		int[] endCorner = new int[2];
+		endCorner[0] = height - counter / width - 1;
+		endCorner[1] = width - counter % width - 1;
+		
+		counter = 0;
 		do {
 			flag = false;
 			colors = rs.getColors(counter / width, counter % width, capture);
@@ -34,38 +164,14 @@ public class GenerateBoard {
 		
 		board[0][0][0] = counter / width;
 		board[0][0][1] = counter % width;
-		
-		do {
-			counter++;
-			w++;
-			flag = false;
-			colors = rs.getColors(counter / width, counter % width, capture);
-			for (int i = 0; i < 3; i++) {
-				if (c2[i] != colors[i]) {
-					flag = true;
-				}
-			}
-		} while(flag && height > counter / width);
+
+		w = (endCorner[0] - board[0][0][0]) / a + pixelFix[0];
+		h = (endCorner[1] - board[0][0][1]) / b + pixelFix[1];
 		
 		this.w = w;
-		
-		do {
-			counter += width;
-			h++;
-			flag = false;
-			colors = rs.getColors(counter / width, counter % width, capture);
-			for (int i = 0; i < 3; i++) {
-				if (c1[i] != colors[i]) {
-					flag = true;
-				}
-			}
-		} while(flag && height > counter / width);
-		
 		this.h = h;
 		
-		if (height < counter / width) {
-			throw new ArrayIndexOutOfBoundsException();
-		}
+		System.out.println(board[0][0][0] + " " + board[0][0][1]);
 		
 		for (int i = 0; i < a; i++) {
 			for (int j = 0; j < b; j++) {
@@ -107,10 +213,28 @@ public class GenerateBoard {
 		BufferedImage capture = rs.capture();
 		int[] colors;
 		int color;
+		int counter;
+		double sens = 0.7;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
-				colors = rs.getColors(board[i][j][0] + h/2, board[i][j][1] + w/2, capture);
-				color = findValue(colors);
+				color = -1;
+				counter = - (int) (h/2 * sens);
+				/*while (color == -1) {
+					colors = rs.getColors(board[i][j][0] + h/2 + counter, board[i][j][1] + w/2, capture);
+					color = findValue(colors);
+					counter++;
+					if (counter > h/2 * sens) {
+						break;
+					}
+				}*/
+				while (color == -1 || color == 45) {
+					colors = rs.getColors(board[i][j][0] + h/2 + counter, board[i][j][1] + w/2 + counter, capture);
+					color = findValue(colors);
+					counter++;
+					if (counter > h/2 * sens) {
+						break;
+					}
+				}
 				nums[i][j] = (char) color;
 			}
 		}
@@ -120,15 +244,7 @@ public class GenerateBoard {
 	
 	//find what number is at a certain position given the color
 	public int findValue(int[] color) {
-		int sens = 30;
-		int[] b1 = new int[]{228, 194, 159};
-		int[] b2 = new int[]{215, 184, 153};
-		int[] blue = new int[]{35, 122, 207};
-		int[] green = new int[]{87, 149, 76};
-		int[] red = new int[]{211, 52, 51};
-		int[] purple = new int[]{166, 103, 157};
-		int[] orange = new int[]{235, 153, 53};
-		int[] teal = new int[]{96, 171, 167};
+		int sens = 20;
 		boolean flag;
 		
 		flag = true;
@@ -208,6 +324,17 @@ public class GenerateBoard {
 			return 54;
 		}
 		
-		return 35;
+		flag = true;
+		for (int i = 0; i < 3; i++) {
+			if ((c1[i] - sens * 0.25 > color[i] || c1[i] + sens * 0.25 < color[i]) && (c2[i] - sens * 0.25 > color[i] || c2[i] + sens * 0.25 < color[i])) {
+				flag = false;
+			}
+		}
+		
+		if (flag) {
+			return 35;
+		}
+		
+		return -1;
 	}
 }

@@ -10,8 +10,14 @@ public class PlayGame {
 	int[][] elimBoard;
 	int[][] mines;
 	double[][] guess;
-	int a = 20;
-	int b = 24;
+	
+	//size of the board
+	//easy:		08 x 10
+	//medium:	14 x 18
+	//hard:		20 x 24
+	int a = 14;
+	int b = 18;
+	
 	ArrayList<Integer> variables;
 	ArrayList<Integer> isMine;
 	ArrayList<Integer> toClick;
@@ -28,6 +34,7 @@ public class PlayGame {
 		robot.mouseMove(x, y);
 		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+		//robot.mouseMove(0, 0);
 	}
 	
 	/*
@@ -85,7 +92,7 @@ public class PlayGame {
 		clickSquare(boardCoords[a/2][b/2][0], boardCoords[a/2][b/2][1]);
 		
 		//only runs gaussean a few times
-		int max = 10;
+		int max = 100;
 		int counter = 0;
 		
 		//to store state of board
@@ -97,6 +104,7 @@ public class PlayGame {
 			//sleep then get the board
 			Thread.sleep(1000);
 			nums = gs.getNums(boardCoords, a, b);
+			printVals(nums);
 			for (int i = 0; i < nums.length; i++) {
 				for (int j = 0; j < nums[i].length; j++) {
 					if (Character.isDigit(nums[i][j])) {
@@ -149,6 +157,7 @@ public class PlayGame {
 				//get the new board and reduce it by the mines
 				Thread.sleep(1000);
 				nums = gs.getNums(boardCoords, a, b);
+				printVals(nums);
 				for (int i = 0; i < nums.length; i++) {
 					for (int j = 0; j < nums[i].length; j++) {
 						if (Character.isDigit(nums[i][j])) {
