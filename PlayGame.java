@@ -3,6 +3,13 @@ import java.awt.event.*;
 import java.util.*;
 
 public class PlayGame {
+	//size of the board
+	//easy:		08 x 10
+	//medium:	14 x 18
+	//hard:		20 x 24
+	int a = 14;
+	int b = 18;
+	
 	Robot robot;
 	GenerateBoard gs;
 	int[][][] boardCoords;
@@ -10,13 +17,6 @@ public class PlayGame {
 	int[][] elimBoard;
 	int[][] mines;
 	double[][] guess;
-	
-	//size of the board
-	//easy:		08 x 10
-	//medium:	14 x 18
-	//hard:		20 x 24
-	int a = 14;
-	int b = 18;
 	
 	ArrayList<Integer> variables;
 	ArrayList<Integer> isMine;

@@ -8,6 +8,9 @@ public class GenerateBoard {
 	//width and height of each square
 	int w = 0, h = 0;
 	
+	//sensitivity to variations in rgb values (around 15-20 works well)
+	int sens = 20;
+	
 	//light and dark green colors on board respectively
 	int[] c1 = new int[] {170, 215, 81};
 	int[] c2 = new int[] {162, 209, 73};
@@ -244,7 +247,6 @@ public class GenerateBoard {
 	
 	//find what number is at a certain position given the color
 	public int findValue(int[] color) {
-		int sens = 20;
 		boolean flag;
 		
 		flag = true;
