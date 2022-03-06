@@ -1,4 +1,4 @@
-# Google Minesweeper Solver
+# How to use
 To run this code, open Google minesweeper, and choose a difficulty level.
 
 At the top of the PlayGame class, change the variabes a and b to match the size of the board given the difficulty level you've selected.
@@ -20,5 +20,12 @@ Then let the code run through its entirety.
 
 If it still can't solve it, then I have no clue how to fix it, maybe change the color values and sensitivity? No clue.
 
-# Sample run:
-https://www.speedrun.com/gm/run/ylr504xy (faster than any human time on speedrun.com)
+# How it works
+
+The algorithm works in two phases:
+
+1. It finds numbers that have the same amount of unknowns and sets all nearby to mines, decreasing the numbers near mines; then it clears all squares next to numbers that have been decreased to zero.
+
+2. If the first phase turns nothing new, it moves to a longer method of solving. It finds all uncleared squares next to numbers and assigns each a variable name; equations using these variables are generated where solutions of 0 mean no mine while 1 means mine; a Gaussean elimination determines solutions to these equations.
+
+Sample run: https://www.speedrun.com/gm/run/ylr504xy (faster than any human time on speedrun.com)
