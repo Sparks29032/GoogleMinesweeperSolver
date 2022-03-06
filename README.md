@@ -1,4 +1,5 @@
-To run this code, open google minesweeper, and choose a difficulty level.
+#Google Minesweeper
+To run this code, open Google minesweeper, and choose a difficulty level.
 
 At the top of the PlayGame class, change the variabes a and b to match the size of the board given the difficulty level you've selected.
 
