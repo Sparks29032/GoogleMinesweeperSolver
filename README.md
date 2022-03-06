@@ -18,3 +18,5 @@ The first index changes the width and the second the height; adding 1 will make 
 Then let the code run through its entirety.
 
 If it still can't solve it, then I have no clue how to fix it, maybe change the color values and sensitivity? No clue.
+
+Sample run: https://www.speedrun.com/gm/run/ylr504xy (faster than any human time on speedrun.com)
