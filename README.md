@@ -1,4 +1,4 @@
-#Google Minesweeper
+# Google Minesweeper Solver
 To run this code, open Google minesweeper, and choose a difficulty level.
 
 At the top of the PlayGame class, change the variabes a and b to match the size of the board given the difficulty level you've selected.
@@ -20,4 +20,5 @@ Then let the code run through its entirety.
 
 If it still can't solve it, then I have no clue how to fix it, maybe change the color values and sensitivity? No clue.
 
-Sample run: https://www.speedrun.com/gm/run/ylr504xy (faster than any human time on speedrun.com)
+# Sample run:
+https://www.speedrun.com/gm/run/ylr504xy (faster than any human time on speedrun.com)
