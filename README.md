@@ -29,3 +29,8 @@ The algorithm works in two phases:
 2. If the first phase turns nothing new, it moves to a longer method of solving. It finds all uncleared squares next to numbers and assigns each a variable name; equations using these variables are generated where solutions of 0 mean no mine while 1 means mine; a Gaussean elimination determines solutions to these equations.
 
 Sample run: https://www.speedrun.com/gm/run/ylr504xy (faster than any human time on speedrun.com)
+
+### Challenges
+The algorithm only clicks around every second because every time a tile is uncovered, an animation is played that covers up the numbers, so the program cannot read it in.
+
+The colors of the numbers are a bit different color on the edges compared to the middle, so colors are read in with a ~15 RGB value sensitivity for each color.
