@@ -21,6 +21,5 @@ Sample run: https://www.speedrun.com/gm/run/ylr504xy (faster than any human time
 * Then let the code run through its entirety.
 
 ### Challenges
-The algorithm only clicks around every second because every time a tile is uncovered, an animation is played that covers up the numbers, so the program cannot read it in.
-
-The colors of the numbers are a bit different color on the edges compared to the middle, so colors are read in with a ~15 RGB value sensitivity for each color.
+* The algorithm only clicks around every second because every time a tile is uncovered, an animation is played that covers up the numbers, so the program cannot read it in.
+* The colors of the numbers are a bit different color on the edges compared to the middle, so colors are read in with a ~15 RGB value sensitivity for each color.
